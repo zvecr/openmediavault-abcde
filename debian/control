@@ -1,0 +1,19 @@
+Source: openmediavault-abcde
+Section: net
+Priority: optional
+Maintainer: zvecr <z.zvecr@gmail.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+XB-Plugin-Section: utilities
+
+Package: openmediavault-abcde
+Architecture: all
+Depends: openmediavault (>= 3.0),
+         abcde,
+         python-musicbrainz2,
+         lame,
+         flac,
+         eject,
+         ${misc:Depends}
+Description: abcde plugin for OpenMediaVault
+ abcde - Grab an entire CD and compress it to Ogg/Vorbis, MP3, FLAC, Ogg/Speex and/or MPP/MP+(Musepack) format.
