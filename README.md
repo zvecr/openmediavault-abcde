@@ -6,7 +6,7 @@ abcde plugin for OpenMediaVault
 
 ## manual install
 
-apt-get install abcde python-musicbrainz2 lame flac eject
+apt-get install abcde python-musicbrainz2 libmusicbrainz-discid-perl libwebservice-musicbrainz-perl lame flac eject
 
 copy files
 

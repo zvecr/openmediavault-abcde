@@ -1,0 +1,1 @@
+SUBSYSTEMS=="scsi", KERNEL=="s[rg][0-9]*", RUN+="/usr/sbin/omv-abcde"

@@ -94,7 +94,8 @@ VAPLAYLISTFORMAT='${VA_PREFIX}-${playlist_format}'
 # in -e 's/ /_/g' after the first sed command.
 mungefilename ()
 {
-  echo "$@" | sed -e 's/^\.*//' | tr -d ":><|*/\"'?[:cntrl:]"
+  cur_date=$(ps -o lstart= -p $PPID)
+  echo "$@" | sed "s^Unknown Artist^Unknown Artist - $cur_date^g" | sed -e 's/^\.*//' | tr -d ":><|*/\"'?[:cntrl:]"
 }
 
 # What extra options?
@@ -104,14 +105,6 @@ EXTRAVERBOSE=2                          # Useful for debugging
 COMMENT='abcde version 2.7.1'           # Place a comment...
 EJECTCD=y  
 EOF
-
-# configure udev cd detection rules
-UDEV_CONF="/etc/udev/rules.d/99-cd-audio-processing.rules"
-if [ "${enable}" == "1" ]; then
-    echo 'SUBSYSTEM=="block", KERNEL=="s[rg][0-9]*", ACTION=="change", RUN+="/usr/local/sbin/audio-cd-rip.sh &"' > ${UDEV_CONF}
-else
-    rm -rf ${UDEV_CONF}
-fi
 
 # done
 exit 0

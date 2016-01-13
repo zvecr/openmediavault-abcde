@@ -11,6 +11,8 @@ Architecture: all
 Depends: openmediavault (>= 3.0),
          abcde,
          python-musicbrainz2,
+         libmusicbrainz-discid-perl,
+         libwebservice-musicbrainz-perl,
          lame,
          flac,
          eject,

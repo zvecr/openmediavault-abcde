@@ -1,0 +1,23 @@
+#!/bin/bash
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+# Globals
+OMV_CONFIG_XPATH="/config/services/abcde"
+
+# grab the currently configured config
+enable=$(omv_config_get "${OMV_CONFIG_XPATH}/enable")
+directory=$(omv_get_sharedfolder_path $(omv_config_get "${OMV_CONFIG_XPATH}/directory"))
+owner=$(omv_config_get "${OMV_CONFIG_XPATH}/owner")
+format=$(omv_config_get "${OMV_CONFIG_XPATH}/format")
+quality=$(omv_config_get "${OMV_CONFIG_XPATH}/quality")
+name_format=$(omv_config_get "${OMV_CONFIG_XPATH}/name_format")
+generate_playlist=$(omv_config_get "${OMV_CONFIG_XPATH}/generate_playlist")
+encoder_count=$(omv_config_get "${OMV_CONFIG_XPATH}/encoder_count")
+
+if [ "${enable}" == "1" ]; then
+    if [ ! -z "${ID_CDROM_MEDIA_TRACK_COUNT_AUDIO}" ]; then
+        sudo -u ${owner} abcde -N &
+    fi
+fi
