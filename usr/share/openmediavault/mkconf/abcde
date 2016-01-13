@@ -17,6 +17,7 @@ quality=$(omv_config_get "${OMV_CONFIG_XPATH}/quality")
 name_format=$(omv_config_get "${OMV_CONFIG_XPATH}/name_format")
 generate_playlist=$(omv_config_get "${OMV_CONFIG_XPATH}/generate_playlist")
 encoder_count=$(omv_config_get "${OMV_CONFIG_XPATH}/encoder_count")
+extra_options=$(omv_config_get "${OMV_CONFIG_XPATH}/extra_options")
 
 # compute additional arguments
 playlist_format="${name_format%/*}"'/${ALBUMFILE}.m3u'

@@ -85,6 +85,7 @@ class OMVRpcServiceABCDE extends OMVRpcServiceAbstract
         $object["name_format"] = $object["name_format"];
         $object["generate_playlist"] = boolval($object["generate_playlist"]);
         $object["encoder_count"] = intval($object["encoder_count"]);
+        $object["extra_options"] = $object["extra_options"];
         
         return $object;
     }
@@ -114,7 +115,8 @@ class OMVRpcServiceABCDE extends OMVRpcServiceAbstract
                     "quality"           : { "type": "integer", "enum":[0,1,2,3,4,5,6,7,8] },
                     "name_format"       : { "type": "string" },
                     "generate_playlist" : { "type": "boolean" },
-                    "encoder_count"     : { "type": "integer", "enum":[1,2,3,4,5,6,7,8] }
+                    "encoder_count"     : { "type": "integer", "enum":[1,2,3,4,5,6,7,8] },
+                    "extra_options"     : { "type": "string" }
                 }
             }'
         );
@@ -129,6 +131,7 @@ class OMVRpcServiceABCDE extends OMVRpcServiceAbstract
             "name_format" => $params["name_format"],
             "generate_playlist" => array_boolval($params, "generate_playlist"),
             "encoder_count" => $params["encoder_count"],
+            "extra_options" => $params["extra_options"],
         );
         
         // Update the configuration file. If it fails it throws an exception.

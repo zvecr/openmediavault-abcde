@@ -174,7 +174,17 @@ Ext.define("OMV.module.admin.service.abcde.Settings", {
 					ptype: "fieldinfo",
 					text: _("Count of how many encoders to run simultaneously")
 				}]
-			}]
+			},
+            {
+                xtype: "textfield",
+                name: "extra_options",
+                fieldLabel: _("Extra options"),
+				allowBlank: true,
+				plugins: [{
+					ptype: "fieldinfo",
+					text: _("Extra options to pass to abcde, see http://linux.die.net/man/1/abcde")
+				}]
+            }]
         }];
     }
 });

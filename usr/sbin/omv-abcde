@@ -5,6 +5,7 @@
 
 # Globals
 OMV_CONFIG_XPATH="/config/services/abcde"
+LOCKFILE=/var/lock/omv-abcde
 
 # grab the currently configured config
 enable=$(omv_config_get "${OMV_CONFIG_XPATH}/enable")
@@ -15,9 +16,19 @@ quality=$(omv_config_get "${OMV_CONFIG_XPATH}/quality")
 name_format=$(omv_config_get "${OMV_CONFIG_XPATH}/name_format")
 generate_playlist=$(omv_config_get "${OMV_CONFIG_XPATH}/generate_playlist")
 encoder_count=$(omv_config_get "${OMV_CONFIG_XPATH}/encoder_count")
+extra_options=$(omv_config_get "${OMV_CONFIG_XPATH}/extra_options")
 
-if [ "${enable}" == "1" ]; then
-    if [ ! -z "${ID_CDROM_MEDIA_TRACK_COUNT_AUDIO}" ]; then
-        sudo -u ${owner} abcde -N &
-    fi
+if [ "${enable}" != "1" ]; then
+    exit 0
 fi
+
+if [ -z "${ID_CDROM_MEDIA_TRACK_COUNT_AUDIO}" ]; then
+    exit 0
+fi
+
+if ! mkdir $LOCKFILE; then
+    exit 0
+fi
+trap 'rm "$LOCKFILE"' EXIT
+
+sudo -u ${owner} abcde -N ${extra_options}
