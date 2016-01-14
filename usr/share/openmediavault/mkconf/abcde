@@ -5,7 +5,6 @@
 
 # Globals
 OMV_CONFIG_XPATH="/config/services/abcde"
-ABCDE_CONF="/etc/abcde.conf"
 VA_PREFIX="Various"
 
 # grab the currently configured config
@@ -27,9 +26,16 @@ if [ "${generate_playlist}" == "1" ]; then
     actions="cddb,playlist,read,encode,tag,move,clean"
 fi
 
+# make home for user if it does not already exist
+abcde_dir=$(eval echo ~${owner})
+mkdir -p ${abcde_dir}
+chown ${owner} ${abcde_dir}
+
+abcde_conf="${abcde_dir}/.abcde.conf"
+
 # generate abcde.conf
-cat <<EOF > ${ABCDE_CONF}
-# ------------------/etc/abcde.conf----------------- #
+cat <<EOF > ${abcde_conf}
+# ------------------${abcde_conf}----------------- #
 #          OMV generated abcde config file
 #       http://andrews-corner.org/abcde.html
 # -------------------------------------------------- #

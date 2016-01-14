@@ -4,12 +4,17 @@
 
 abcde plugin for OpenMediaVault
 
+## install
+
+curl -o- https://github.com/zvecr/openmediavault-abcde/../openmediavault-abcde.release.deb | dpkg --install 
+
 ## manual install
 
 apt-get install abcde python-musicbrainz2 libmusicbrainz-discid-perl libwebservice-musicbrainz-perl lame flac eject
 
-copy files
+copy all files to root of file system
 
+/debian/postinst configure
 source /usr/share/openmediavault/scripts/helper-functions && omv_purge_internal_cache
 service openmediavault-engined restart
 
@@ -19,7 +24,6 @@ udevadm trigger
 ## todo
 
 expose logging
-move abcde.conf to home instead of /etc/
 add release .deb handling
 add block for single instance omv-abcde
 add extra cmd line options for abcde
