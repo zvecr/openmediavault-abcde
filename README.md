@@ -25,7 +25,6 @@ udevadm trigger
 
 expose logging
 add release .deb handling
-add block for single instance omv-abcde
 add extra cmd line options for abcde
 check packaging
     chmod +x for scripts

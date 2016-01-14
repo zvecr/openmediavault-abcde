@@ -29,6 +29,6 @@ fi
 if ! mkdir $LOCKFILE; then
     exit 0
 fi
-trap 'rm "$LOCKFILE"' EXIT
+trap 'rm -rf "$LOCKFILE"' EXIT
 
 sudo -u ${owner} abcde -N ${extra_options}
