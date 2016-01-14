@@ -102,7 +102,7 @@ VAPLAYLISTFORMAT='${VA_PREFIX}-${playlist_format}'
 mungefilename ()
 {
   cur_date=$(ps -o lstart= -p $PPID)
-  echo "$@" | sed "s^Unknown Artist^Unknown Artist - $cur_date^g" | sed -e 's/^\.*//' | tr -d ":><|*/\"'?[:cntrl:]"
+  echo "\$@" | sed "s^Unknown Artist^Unknown Artist - $cur_date^g" | sed -e 's/^\.*//' | tr -d ":><|*/\"'?[:cntrl:]"
 }
 
 # What extra options?
